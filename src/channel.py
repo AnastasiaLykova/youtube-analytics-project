@@ -40,3 +40,19 @@ class Channel:
         api_key: str = os.getenv('API_KEY')
         youtube = build('youtube', 'v3', developerKey=api_key)
         return youtube
+
+    def to_json(self, name_json):
+        """
+        Сохраняет в файл значения атрибутов экземпляра Channel
+        """
+        attribute_dict = {'channel_id': self.__channel_id,
+                          'title': self.title,
+                          'description': self.description,
+                          'url': self.url,
+                          'subscribers': self.subscribers,
+                          'video_count': self.video_count,
+                          'views': self.views,
+                          }
+
+        with open(name_json, "w", encoding="utf-8") as file:
+            file.write(json.dumps(attribute_dict))
