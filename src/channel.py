@@ -21,6 +21,52 @@ class Channel:
         self.video_count = channel['items'][0]['statistics']['videoCount']
         self.views = channel['items'][0]['statistics']['viewCount']
 
+    def __str__(self):
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other):
+        """ Метод для операции сложения"""
+        return int(self.subscribers) + int(other.subscribers)
+
+    def __sub__(self, other):
+        """ Метод для операции вычитания"""
+        return int(self.subscribers) - int(other.subscribers)
+
+    def __lt__(self, other):
+        """ Метод для операции сравнения «меньше»"""
+        if int(self.subscribers) < int(other.subscribers):
+            return True
+        else:
+            return False
+
+    def __le__(self, other):
+        """ Метод для операции сравнения «меньше или равно»"""
+        if int(self.subscribers) <= int(other.subscribers):
+            return True
+        else:
+            return False
+
+    def __gt__(self, other):
+        """ Метод для операции сравнения «больше»"""
+        if int(self.subscribers) > int(other.subscribers):
+            return True
+        else:
+            return False
+
+    def __ge__(self, other):
+        """  Метод для операции сравнения «больше или равно»"""
+        if int(self.subscribers) >= int(other.subscribers):
+            return True
+        else:
+            return False
+
+    def __eq__(self, other):
+        """ Поведение оператора равенства"""
+        if int(self.subscribers) == int(other.subscribers):
+            return True
+        else:
+            return False
+
     @property
     def channel_id(self):
         return self.__channel_id
