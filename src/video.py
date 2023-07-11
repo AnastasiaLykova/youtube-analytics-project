@@ -16,11 +16,11 @@ class Video:
             self.view_count = None
             self.like_count = None
         else:
-
+            video_data = video_response['items'][0]
             self.url = 'https://youtu.be/' + self.video_id
-            self.title: str = video_response['items'][0]['snippet']['title']
-            self.view_count: int = video_response['items'][0]['statistics']['viewCount']
-            self.like_count: int = video_response['items'][0]['statistics']['likeCount']
+            self.title: str = video_data['snippet']['title']
+            self.view_count: int = video_data['statistics']['viewCount']
+            self.like_count: int = video_data['statistics']['likeCount']
 
     def __str__(self):
         return f'{self.title}'
